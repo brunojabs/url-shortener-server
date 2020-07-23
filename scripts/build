@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if ! command -v docker-compose &> /dev/null
+then
+    echo "docker-compose could not be found, check if it installed"
+    exit
+fi
+
+docker-compose build
+docker-compose run web bin/setup
