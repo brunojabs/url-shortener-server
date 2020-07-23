@@ -1,13 +1,14 @@
 require 'test_helper'
 
 class UrlApiTest < ActionDispatch::IntegrationTest
-  test 'POST /urls creates a slug for an given url, stores and returns it' do
+  test 'POST /urls creates an URL for an given target, \
+        stores and returns with a slug that represents the id' do
     skip 'TODO'
     post '/urls', params: { data: { url: 'http://google.com'} }, as: :json
 
     expected_response = {
       data: {
-        url: { target: 'http://google.com', slug: 'a', hits: 0}
+        url: { target: 'http://google.com', slug: '1', hits: 0}
       },
       errors: []
     }
@@ -20,9 +21,10 @@ class UrlApiTest < ActionDispatch::IntegrationTest
     skip 'TODO'
     post '/urls', params: { data: { url: 'http://google.com'} }, as: :json
 
+    # TODO: this should be after 62 other record are created on the database
     expected_response = {
       data: {
-        url: { target: 'http://google.com', slug: 'a1', hits: 0}
+        url: { target: 'http://google.com', slug: '00', hits: 0}
       },
       errors: []
     }
