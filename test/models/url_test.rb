@@ -38,4 +38,10 @@ class UrlTest < ActiveSupport::TestCase
     record = Url.new(id: 124)
     assert_equal('20',record.slug)
   end
+
+  test '.find_by_slug returns a url based on the base62 encoded id' do
+    record = Url.create!(id: 123, target: 'http://juntin.app')
+
+    assert_equal(record, Url.find_by_slug('1Z'))
+  end
 end
