@@ -24,13 +24,18 @@ class UrlTest < ActiveSupport::TestCase
 
   test '#slug returns the record ID represented in a base62 ([0-9][a-z][A-Z])' do
     record = Url.new(id: 1)
+    assert_equal('1', record.slug)
 
-    assert_equal(record.slug, '1')
+    record = Url.new(id: 61)
+    assert_equal('Z', record.slug)
 
     record = Url.new(id: 62)
-    assert_equal(record.slug, 'Z')
+    assert_equal('10',record.slug)
 
-    record = Url.new(id: 63)
-    assert_equal(record.slug, '00')
+    record = Url.new(id: 123)
+    assert_equal('1Z',record.slug)
+
+    record = Url.new(id: 124)
+    assert_equal('20',record.slug)
   end
 end

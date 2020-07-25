@@ -12,4 +12,8 @@ class Url < ApplicationRecord
   def slug
     BaseEncoder.encode(id, SLUG_CHARSET)
   end
+
+  def self.find_by_slug(slug)
+    self.find(BaseEncoder.decode(slug, SLUG_CHARSET))
+  end
 end
