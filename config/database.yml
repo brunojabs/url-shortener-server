@@ -85,5 +85,5 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
   database: url_shortener_production
+  url: <%= ENV['DATABASE_URL'] %>
